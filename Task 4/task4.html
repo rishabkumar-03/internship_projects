@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style4.css">
+		<script type="text/javascript">
+			function validate_name(event){
+				event.preventDefault();
+				var name=document.getElementById("first-name").value;
+				var name_regx= /^[A-Z][a-zA-z]*/;
+				if(!(name_regx.test(name))){
+                   document.getElementById("invalid-fname").style.visibility="visible";
+				}
+				else{
+					document.getElementById("invalid-fname").style.visibility="hidden";
+				}
+			}
+			function validate_mail(event){
+				event.preventDefault();
+				var mail=document.getElementById("e-mail").value;
+				var email_regx=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+				if(!(email_regx.test(mail))){
+					document.getElementById("invalid-email").style.visibility="visible";
+				}
+				else{
+					document.getElementById("invalid-email").style.visibility="hidden";
+				}
+			}
+			function validate_pin(event){
+				event.preventDefault();
+				var pin=document.getElementById("pin-code").value;
+				var pin_regx=/[0-9]*/;
+				if( pin_regx.test(pin) && (pin.length === 6)){
+					document.getElementById("invalid-pin").style.visibility= "hidden"
+					return true;
+					}
+					
+				else{
+					document.getElementById("invalid-pin").style.visibility= "visible";
+				}
+			}
+			function validate_phone(event){
+				event.preventDefault();
+				var ph=document.getElementById("ph-no").value;
+				var ph_regx=/^\d{10}$/;
+				if(ph_regx.test(ph)){
+					document.getElementById("invalid-phone").style.visibility="hidden";
+				}
+				else{
+					document.getElementById("invalid-phone").style.visibility= "visible";
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<header>
+			<h1>REGISTRATION FORM</h1>
+		</header>
+
+		<div class="form-content">
+			<form name="myform" action="" method="post">
+				<div class="row-content">
+				<div class="col-content">
+				<label for="first-name">FIRST NAME:</label><input type="text" name="fname" id="first-name" size='50' onchange="validate_name(event)" required />
+				<label id="invalid-fname" style="color: red; font-weight:bold; visibility: hidden;">Invalid Name. Begin with caps</label>
+				<label for="last-name">LAST NAME:</label><input type="text" name="lname" id="last-name"  required size='50'/>
+				<label for="e-mail">EMAIL:</label><input type="email" id="e-mail" placeholder="test-user@newthinkthank.in" onchange="validate_mail(event)"  size='50'>
+				<label id="invalid-email" style="color: red; font-weight:bold; visibility: hidden;"> Invalid Email</label>
+				<label for="address">ADDRESS:</label><input type="text" placeholder="Eg: 221B, Baker's Street" name="add" id="address"  size='50' required/>
+				<label for="dob">DOB</label><input type="date" name="dob" id="dob" required="" />
+				<label for="country">COUNTRY:</label>
+				<select id="country">
+					<option>India</option>
+					<option>Nepal</option>
+					<option>Bhutan</option>
+					<option>China</option>
+					<option>Japan</option>
+					<option>Other</option>
+				</select>
+			</div>
+			<div class="col-content">
+				<label for="district">DISTRICT:</label>
+				<select id="disrtrict">
+					<option>district 1</option>
+					<option>district 1</option>
+					<option>district 1</option>
+				</select>
+				<label for="state">STATE:</label>
+				<select id="state">
+					<option>Jharkhand</option>
+					<option>Karnataka</option>
+					<option>Kerala</option>
+					<option>Tamil Nadu</option>
+					<option>Other</option>
+				</select>
+				<label for="pin">PIN:</label><input type="text" name="pin-no" id="pin-code"  onchange=" return validate_pin(event)" required />
+				<label id="invalid-pin" style="color:red; font-weight:bold; visibility:hidden;">Pincode must be of 6 digits</label>
+				<label for="ph-no">PHONE</label><input type="tel" id="ph-no" onchange="validate_phone(event)"  />
+				<label id="invalid-phone" style=" color: red; font-weight: bold; visibility: hidden; "> Phone Number not valid !</label>
+			</div>
+		</div>
+		<div class="submit-div">
+				<input type="submit" value="SUBMIT" class="final-submit"/>
+			</div>
+			</form>
+		</div>
+		<footer>
+			<p style="color: white;">For any queries contact 8210545163 or <a href="mailto:rishabhkumar00021@gmail.com">rishabhkumar00021@gmail.com</a></p>
+		</footer>
+	</body>
+</html>
