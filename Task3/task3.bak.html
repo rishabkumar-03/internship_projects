@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task3</title>
+	<link rel='stylesheet' href='style3.css'>
+	<script type="text/javaScript">
+		function myFunc(event){
+			hideAll();
+			var divId = event.target.name + '-content';
+			var divElement = document.getElementById(divId);
+			divElement.style.display="block";
+			document.getElementById('welcome-content').style.display= "none";
+		}
+		function hideAll() {
+			document.getElementById("java-content").style.display= "none";
+			document.getElementById("cpp-content").style.display= "none";
+			document.getElementById("js-content").style.display= "none";
+			document.getElementById("css-content").style.display= "none";
+		}
+	</script>	
+</head>
+<body onload="hideAll();">
+		<header>
+			<h2>Welcome to CoffeBeans&nbsp;<img src='pic6.jfif'/></h2>
+			<ul class='nav'>
+				<li><a href='#top'>Home</a></li>
+				<li><a href='#'>Subscribe</a></li>
+			</ul>
+		</header>
+		<div class='middle'>
+			<div class="menu">
+				<h2 style='font-variant:small-caps;'>Technologies</h2>
+				<ul class='tech'>
+					<li><button onclick="myFunc(event)" name='java'>Java</button></li>
+					<li><button onclick="myFunc(event)" name='cpp'>C++</button></li>
+					<li><button onclick="myFunc(event)" name='js'>JavaScript</button></li>
+					<li><button onclick="myFunc(event)" name='css'>Html and Css</button></li>
+				</ul>
+			</div>
+
+			<div class="description">
+				<div id='welcome-content' class="text-content"> 
+					<h1>WELCOME !</h1>
+				</div>
+				<div id="java-content">
+					<h2>Java</h2> <p>Java is a general-purpose programming language that is class-based, object-oriented, and designed to have as few implementation dependencies as possible. It is intended to let application developers write once, run anywhere (WORA),[15] meaning that compiled Java code can run on all platforms that support Java without the need for recompilation.[16] Java applications are typically compiled to bytecode that can run on any Java virtual machine (JVM) regardless of the underlying computer architecture. The syntax of Java is similar to C and C++, but it has fewer low-level facilities than either of them. As of 2019, Java was one of the most popular programming languages in use according to GitHub,[17][18] particularly for client-server web applications, with a reported 9 million developers.</p><hr>
+				</div>
+				<div id="cpp-content">
+					<h2>C++</h2><p>C++ is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes". The language has expanded significantly over time, and modern C++ has object-oriented, generic, and functional features in addition to facilities for low-level memory manipulation. It is almost always implemented as a compiled language, and many vendors provide C++ compilers, including the Free Software Foundation, LLVM, Microsoft, Intel, Oracle, and IBM, so it is available on many platforms</p><hr>
+				</div>
+				<div id="js-content">
+					<h2>JavaScript</h2><p> Javascript is a lightweight, interpreted programming language. It is designed for creating network-centric applications. It is complimentary to and integrated with Java. JavaScript is very easy to implement because it is integrated with HTML. It is open and cross-platform.As a multi-paradigm language, JavaScript supports event-driven, functional, and imperative (including object-oriented and prototype-based) programming styles. It has APIs for working with text, arrays, dates, regular expressions, and the DOM, but the language itself does not include any I/O, such as networking, storage, or graphics facilities. It relies upon the host environment in which it is embedded to provide these features.</p><hr>
+				</div>
+				<div id="css-content">
+					<h2>HTML and CSS</h2><p>Hypertext Markup Language (HTML) is the standard markup language for documents designed to be displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS) and scripting languages such as JavaScript.CSS is designed to enable the separation of presentation and content, including layout, colors, and fonts.[3] This separation can improve content accessibility, provide more flexibility and control in the specification of presentation characteristics, enable multiple web pages to share formatting by specifying the relevant CSS in a separate .css file, and reduce complexity and repetition in the structural content.</p>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<p>&copy; CoffeeBeans Consulting,Bangalore</p>
+			<p><a href='#'>Terms and Conditions</a></p>
+			<p>Email at:<a href='mailto:k.rishab@coffebeans.io'>k.rishab@coffebeans.io</a></p>
+		</footer>
+</body>
+</html>
+

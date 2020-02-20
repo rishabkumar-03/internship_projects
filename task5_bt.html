@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			function validate_name(event){
+				event.preventDefault();
+				var name=document.getElementById("first-name").value;
+				var name_regx= /^[A-Z][a-zA-z]*/;
+				if(name_regx.test(name)){
+                   document.getElementById("invalid-fname").style.display="none";
+				}
+				else{
+					document.getElementById("invalid-fname").style.display = "block";
+				}
+			
+			}
+			function validate_mail(event){
+				event.preventDefault();
+				var mail=document.getElementById("e-mail").value;
+				var email_regx=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+				if(!(email_regx.test(mail))){
+					document.getElementById("invalid-email").style.display = "block";
+				}
+				else{
+					document.getElementById("invalid-email").style.display = "none";
+				}
+			}
+			function validate_pin(event){
+				event.preventDefault();
+				var pin=document.getElementById("pin-code").value;
+				var pin_regx=/[0-9]*/;
+				if( pin_regx.test(pin) && (pin.length === 6)){
+					document.getElementById("invalid-pin").style.display = "none"
+					return true;
+					}
+					
+				else{
+					document.getElementById("invalid-pin").style.display = "block";
+				}
+			}
+			function validate_phone(event){
+				event.preventDefault();
+				var ph=document.getElementById("ph-no").value;
+				var ph_regx=/^\d{10}$/;
+				if(ph_regx.test(ph)){
+					document.getElementById("invalid-phone").style.display = "none";
+				}
+				else{
+					document.getElementById("invalid-phone").style.display = "block";
+				}
+			}
+			var states = { "India": ['Jharkhand','Karnataka','Tamil Nadu','Kerala','Assam','Bihar'],
+	            "China" : [ 'Hubei','Hunan','Sichuan','Jiangsu','Shandong'] 
+	       		 }
+	       		 var state_districts={
+	       		 	"Jharkhand":['East Singhbhum','West Singhbhum','HAzaribagh','Koderma']
+	       		 }
+	       	window.onload = function() {    
+                populateCountry();
+            };
+            
+            function populateCountry() {        
+                var countries = "<option>Please Select</option>";
+                var data = Object.keys(states); 
+                for (i=0; i < data.length; i++) {
+                    countries += "<option>" + data[i] + "</option>";
+                }
+                document.getElementById("country").innerHTML = countries;
+            }
+                
+            function populateStates(country) {    
+                var country_states = "<option>Please Select</option>";
+                var data = states[country];
+                for (i=0; i < data.length; i++) {
+                    country_states += "<option>" + data[i] + "</option>";
+                }
+                document.getElementById("state_select").innerHTML = country_states;
+            }
+            function populatedistrict(state_select){
+            	var districtlist="<option>Please Select</option>";
+            	var data=state_districts[state_select];
+            	for(i=0;i<data.length;i++){
+            		districtlist += "<option>" + data[i] + "</option>";
+            	}
+            	document.getElementById("district").innerHTML= districtlist;
+
+            }
+
+			
+		</script>
+	</head>
+	<body>
+		<header class="bg-dark text-white text-center">
+			<h1>REGISTRATION FORM</h1>
+		</header>
+
+		<div class="bg-light">
+			<form name="myform">
+				<div class="container">
+					<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="first-name">FIRST NAME:</label><input type="text" class="form-control border border-info rounded input-lg" name="fname" id="first-name"  onchange="validate_name(event)" required />
+									<label id="invalid-fname" class="text-danger" style="display:none;">Invalid Name. Begin with Capital letter !</label>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="last-name">LAST NAME:</label><input type="text" class="form-control border border-info rounded input-lg" name="lname" id="last-name"  required />
+								</div>
+								<div class="form-group col-md-6">
+									<label for="e-mail">EMAIL:</label><input type="email" class="form-control border border-info rounded input-lg" id="e-mail" placeholder="test-user@newthinkthank.in" onchange="validate_mail(event)"  >
+									<label id="invalid-email" class="text-danger" style="display:none;"> Invalid Email !</label>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="address">ADDRESS:</label><input type="text" class="form-control border border-info rounded input-lg"placeholder="Eg: 221B, Baker's Street" name="add" id="address"   required/>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="dob">DOB</label><input type="date" class="form-control border border-info rounded input-lg" name="dob" id="dob" required="" />
+								</div>
+								<div class="form-group col-md-6">
+									<label for="country">COUNTRY:</label>
+									<select class="form-control border border-info rounded" data-width="100px" onchange="populateStates(this.value)" id="country">
+										<option>Select</option>
+									</select>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="state">STATE:</label>
+									<select class="form-control border border-info rounded " onchange="populatedistrict(this.value)" id="state_select">	
+									</select>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="district">DISTRICT:</label>
+									<select class="form-control border border-info rounded" data-width="75%" id="district">
+									</select>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="pin">PIN:</label><input type="text" class="form-control border border-info rounded input-lg" name="pin-no" id="pin-code"  onchange=" return validate_pin(event)" required />
+									<label id="invalid-pin" class="text-danger" style="display:none;">Pincode must be of 6 digits !</label>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="ph-no">PHONE</label><input type="tel" class="form-control border border-info rounded input-lg" id="ph-no" onchange="validate_phone(event)"  />
+									<label id="invalid-phone" class="text-danger" style="display:none; "> Phone Number not valid !</label>
+								</div>
+					</div>
+					<div class="form-group text-center">
+						<input type="submit" class="btn btn-info" value="SUBMIT">
+					</div>
+				</div>
+			</form>
+		</div>
+		<footer class="bg-dark text-white text-center">
+			<p style="color: white;">For any queries contact 8210545163 or <a href="mailto:rishabhkumar00021@gmail.com">rishabhkumar00021@gmail.com</a></p>
+		</footer>
+	</body>
+</html>

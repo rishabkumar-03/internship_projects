@@ -1,0 +1,54 @@
+body{
+	margin: 0;
+}
+header{
+	background-color: black;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+img{
+	max-width: 70px;
+	max-height: 70px;
+}
+h2{
+	color: white;
+}
+.nav>li{
+	text-decoration: none;
+	padding: 20px;
+	font-size: 20px;
+	color: white;
+}
+.nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+footer{
+	color: white;
+	background-color: black;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.middle{
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+button{
+	margin: 5px;
+}
+.menu{
+	width: 20%;
+	border: 1px solid black;
+}
+.description{
+	width: 80%;
+	border: 1px solid black;
+}
+.text-content{
+	padding: 10px;
+}
