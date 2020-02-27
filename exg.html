@@ -1,0 +1,96 @@
+
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+<html>
+    <head>
+        <title>Form</title>
+        
+        <script type="text/javascript">
+            var zoneDistrict = {
+                "Mechi": ["Jhapa", "Illam", "Panchthar", "Taplejung"],
+                "Koshi": ["Sunsari", "Morang", "Bhojpur", "Dhankuta", "Tehrathum", "Sankhuwasabha"],
+                "Sagarmatha": ["Siraha", "Saptari", "Udayapur", "Khotang", "Okhaldhunga", "Solukhumbu"]
+            }
+            
+            window.onload = function() {    
+                populateZone();
+            };
+            
+            function populateZone() {        
+                var zones = "<option>Please Select</option>";
+                var data = Object.keys(zoneDistrict); // get keys from zoneDistrict object
+                for (i=0; i < data.length; i++) {
+                    zones += "<option>" + data[i] + "</option>";
+                }
+                document.getElementById("zone").innerHTML = zones;
+            }
+                
+            function populateDistrict(zone) {    
+                var districts = "<option>Please Select</option>";
+                var data = zoneDistrict[zone];
+                for (i=0; i < data.length; i++) {
+                    districts += "<option>" + data[i] + "</option>";
+                }
+                document.getElementById("district").innerHTML = districts;
+            }
+        </script>    
+    </head>
+    <body>
+        <form>
+            <p>
+                <select id="zone" onchange="populateDistrict(this.value)">
+                    <option>Please Select</option>
+                </select>
+            </p>
+            <p>
+                <select id="district">
+                    <option>Please Select</option>
+                </select>
+            </p>
+        </form>
+    </body>
+</html> 
