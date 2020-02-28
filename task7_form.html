@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Form Validation</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script type="text/javascript">
+			function validate_name(event){
+				event.preventDefault();
+				var name=document.getElementById("first-name").value;
+				var name_regx= /^[A-Z][a-zA-z]*/;
+				if(name_regx.test(name)){
+                   document.getElementById("invalid-fname").style.display="none";
+				}
+				else{
+					document.getElementById("invalid-fname").style.display = "block";
+				}
+			
+			}
+			function validate_mail(event){
+				event.preventDefault();
+				var mail=document.getElementById("e-mail").value;
+				var email_regx=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+				if(!(email_regx.test(mail))){
+					document.getElementById("invalid-email").style.display = "block";
+				}
+				else{
+					document.getElementById("invalid-email").style.display = "none";
+				}
+			}
+			function add_user_to_api(){
+				var user_id = Math.floor((Math.random() *100) +1);
+				var f_name=document.getElementById("first-name").value;
+				var l_name=document.getElementById("last-name").value;
+				var e_mail=document.getElementById("e-mail").value;
+				var avatar_value=document.getElementById("avatr").value;
+				const details = { "id" : user_id, "firts_name": f_name, "last_name" : l_name, "email":e_mail,"avatar":avatar_value};
+				localStorage.setItem('details',JSON.stringify(details));
+			}
+
+
+			
+		</script>
+	</head>
+	<body>
+		<header class="bg-dark text-white text-center d-flex flex-row justify-content-around">
+			<h1>REGISTER THE USER</h1>
+			<a href="task7.html">HOME</a>
+		</header>
+
+		<div class="bg-light">
+			<form name="myform" onsubmit="add_user_to_api()">
+				<div class="container">
+					<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="first-name">FIRST NAME:</label><input type="text" class="form-control border border-info rounded input-lg" name="fname" id="first-name"  onchange="validate_name(event)" required />
+									<label id="invalid-fname" class="text-danger" style="display:none;">Invalid Name. Begin with Capital letter !</label>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="last-name">LAST NAME:</label><input type="text" class="form-control border border-info rounded input-lg" name="lname" id="last-name"  required />
+								</div>
+								<div class="form-group col-md-6">
+									<label for="e-mail">EMAIL:</label><input type="email" class="form-control border border-info rounded input-lg" id="e-mail" placeholder="test-user@newthinkthank.in" onchange="validate_mail(event)"  >
+									<label id="invalid-email" class="text-danger" style="display:none;"> Invalid Email !</label>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="ph-no">AVATAR</label><input type="tel" class="form-control border border-info rounded input-lg" id="avatr"   />
+									
+								</div>
+					</div>
+					<div class="form-group text-center">
+						<input type="submit" class="btn btn-info" value="SUBMIT" >
+					</div>
+				</div>
+			</form>
+		</div>
+		<footer class="bg-dark text-white text-center">
+			<p style="color: white;">For any queries contact +91-8210545163 or <a href="mailto:rishabhkumar00021@gmail.com">rishabhkumar00021@gmail.com</a></p>
+		</footer>
+	</body>
+</html>

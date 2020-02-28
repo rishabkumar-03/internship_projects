@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> DESCRIPTION PAGE</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script>
+			var url= window.location.href;
+			var user_id= url.split('profile_id=')[1];
+			var employee_promise= fetch('https://reqres.in/api/users/' + user_id);
+			employee_promise .then(response => {
+				return response.json();
+			})
+			.then( function(response_data) {
+				//var obj=JSON.parse(response_data);
+				for (let [key, value] of Object.entries(response_data['data'])) {
+					 console.log(`${key}: ${value}`);
+					 document.getElementById("desc").innerHTML += "<tr><td>"+ `${key}` + "</td><td>" + `${value}` + "</td></tr>";
+					}
+				})
+			.catch( function (err) {
+						console.log(err);
+						document.getElementById("desc").innerHTML= "Something went wrong";
+					});
+		</script>
+	</head>
+	<body>
+		<header class="bg bg-info text-white text-center">
+			<a href="task7.html" style=" color:white; text-decoration: none; padding: 5px; border: 1px black;"> HOME</a>
+		</header>
+		<div class="bg-light "> 
+			<table id="desc" class="table table-secondary " >
+
+			</table>
+		</div>
+		<footer class="bg bg-dark text-white text-center" >
+			<p>Thank You</p>
+		</footer>
+	</body>
+</html>

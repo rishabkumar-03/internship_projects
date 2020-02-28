@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Employee API</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<script>
+			var page = 1;
+			while(page < 3) {
+				var fetchPromise = fetch('https://reqres.in/api/users?page=' + page);
+
+				fetchPromise
+					.then(response => {
+						return response.json();
+					})
+					.then( function (respData) {
+						console.log(respData['data'].length)
+						localStorage.setItem('details', JSON.stringify(respData['data']));
+						respData['data'].forEach(result => {
+							var profile_id = result.id
+							document.getElementById("demo").innerHTML += "<div class='col' onclick='desc_func( " + profile_id+ " )'> <figure> <img src='user_copy.jfif' /> <figcaption>" + result['first_name'] + " " + result['last_name'] + "</figcaption></figure></div>" ;	
+						});
+
+						})
+					
+					.catch( function (err) {
+						console.log(err);
+						document.getElementById("demo").innerHTML= "Something went wrong";
+					});
+				page += 1; 
+			} 
+		
+			function desc_func(profile_id){
+				window.location= "task7_desc.html" + "?profile_id=" + profile_id ;
+			}
+			function user_create(){
+				window.location= "task7_form.html";
+			}			
+		</script>
+	</head>
+	<body>
+		<header class="bg bg-info text-white">
+			<div class="d-flex flex-row justify-content-around">
+				<div class="d-flex flex-row">
+					<img src="logo_header.png">
+					<h1> DUMMY SAMPLE REST API</h1>
+			 	</div>
+			 	<div>
+					<button onclick="user_create()">CREATE USER</button>
+				</div>
+			</div>
+		</header>
+		<div>
+			<div class="row" id="demo">
+			</div>
+		</div>
+		<footer class="text-center bg bg-dark text-white">
+			<a href="#"> rishabhkumar00021@gmail.com</a>
+		</footer>
+	</body>
+</html>
+
