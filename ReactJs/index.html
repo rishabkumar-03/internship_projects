@@ -1,0 +1,56 @@
+<!doctype html>
+
+<html>
+	<body>
+		<div id="root"></div>
+		<script src="https://unpkg.com/react@16/umd/react.development.js"></script>  
+		<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>  
+		<script src="https://unpkg.com/babel-standalone/babel.min.js"></script>  
+		<!-- <script type="text/babel" src="dist/index.js"></script> -->
+		<script type="text/babel">
+			class AppComponent extends React.Component {
+			  constructor(props) {
+			    super(props);
+			  }
+			  render() {
+			    return(
+			      <div>
+			   		<HeaderComponent />
+			   		<BodyComponent />
+			   		<FooterComponent />
+			      </div>
+			    );
+			  }
+			};
+
+			class HeaderComponent extends React.Component{
+				render(){
+					return(
+						<header> <p> I am header ! </p> </header>
+					);
+				}
+			};
+			class BodyComponent extends React.Component{
+				render() {
+				    return(
+				      <div>
+				        <input name="input-component"  type="text" />
+				      </div>
+				    );
+				  }
+				};
+			class FooterComponent extends React.Component{
+				render(){
+					return(
+						<footer> <p> I am  footer ! </p> </footer>
+					);
+				}
+
+			};
+			ReactDOM.render(
+			  <AppComponent />,
+			  document.getElementById('root')
+			);
+		</script>
+	</body>
+</html>
