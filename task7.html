@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Employee API</title>
+		<title>EMPLOYEE API</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -31,13 +31,33 @@
 					});
 				page += 1; 
 			} 
-		
 			function desc_func(profile_id){
 				window.location= "task7_desc.html" + "?profile_id=" + profile_id ;
 			}
 			function user_create(){
 				window.location= "task7_form.html";
-			}			
+			}	
+			function getFromLocalStorage(key){
+				var val= localStorage.getItem(key);
+				if (!val) {
+					var parsedVal = JSON.parse(val); 
+					return parsedVal;	
+				}
+				return null;
+			}
+			function putToLS(key,value){
+				var stringifiedValue= JSON.stringify(value);
+				localStorage.setItem(key, stringifiedValue);
+			}	
+			function push(key, newVal){
+				var oldVal = getFromLocalStorage(key);
+				if(oldVal == null){
+					putToLS(key,newVal);
+				}
+				else{
+					
+				}
+			}	
 		</script>
 	</head>
 	<body>
@@ -52,8 +72,8 @@
 				</div>
 			</div>
 		</header>
-		<div>
-			<div class="row" id="demo">
+		<div class="container">
+			<div class="row text-center" id="demo">
 			</div>
 		</div>
 		<footer class="text-center bg bg-dark text-white">
