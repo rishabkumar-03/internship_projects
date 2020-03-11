@@ -1,8 +1,8 @@
 import React from 'react';
-import './listitem.css';
+import './TodoListComponent.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
-function Listitem(props){
+function TodoListComponent(props){
     const items = props.items;
     const listItems = items.map(item => {
        return <div className="list-display" key={item.key}>
@@ -21,4 +21,4 @@ function Listitem(props){
         <div>{listItems}</div>
     );
 }
-export  default Listitem;
+export  default TodoListComponent;
