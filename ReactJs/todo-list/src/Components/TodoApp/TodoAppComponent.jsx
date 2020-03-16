@@ -12,21 +12,23 @@ class TodoAppComponent extends React.Component{
           items : [],
           currentItem : {
             text: '',
-            key: ''
+            key: '',
+            status: false
           }
         }
         // this.handleInput=this.handleInput.bind(this);
         // this.addItem=this.addItem.bind(this);
         // this.deleteItem=this.deleteItem.bind(this);
+        //  this.handleStatus=this.handleStatus.bind(this);
+
     
     }
     handleInput(e){
+        const currentItemFromState = this.state.currentItem;
+        currentItemFromState.text = e.target.value;
         this.setState({
-            currentItem : {
-            text : e.target.value,
-            key : Date.now()
-            }
-        });
+            currentItem: currentItemFromState
+        }, () => console.log(this.state));
     }
 
     deleteItem(key){
@@ -36,22 +38,28 @@ class TodoAppComponent extends React.Component{
         })
     }
     
-    hideItem(key){
-
-    }
     addItem(e){
         const newItem=this.state.currentItem;
-        console.log(newItem);
-        if(newItem.text !== ""){
-            const newItems=[...this.state.items,newItem];
+        newItem.key = Date.now();
+        if (newItem.text !== "") {
+            const newItemsArray = [
+                ...this.state.items,
+                newItem
+            ];
             this.setState({
-            items: newItems,
-            currentItem: {
-                text:'',
-                key: ''
-            }
+                items: newItemsArray,
+                currentItem: {
+                    text:'',
+                    key: '',
+                    status: false
+                }
             });
         }
+    }
+    handleStatus(index) {
+        const itemFromList = this.state.items[index];
+        
+       // console.log(itemFromList.state);
     }
     render() {
         const { currentItem, items } = this.state;
@@ -59,7 +67,7 @@ class TodoAppComponent extends React.Component{
             <WrapperComponent>
                 <HeaderComponent />
                 <TodoItemComponent currentItem={currentItem} addItem={() => this.addItem()} handleInput={(e) => this.handleInput(e)} />
-                <TodoListComponent items={items} deleteItem={(key) => this.deleteItem(key)}></TodoListComponent>
+                <TodoListComponent items={items} deleteItem={(key) => this.deleteItem(key)} handleStatus = { (key) => this.handleStatus(key)}></TodoListComponent>
                 <TodoFilterComponent />
             </WrapperComponent>
         );
