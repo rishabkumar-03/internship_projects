@@ -1,11 +1,12 @@
 import React from 'react';
 
-function TodoFilterComponent() {
+function TodoFilterComponent(props) {
+    const {displayActivelist,displayCompleted,items} = props;
    return( 
        <div>
             <button >ALL</button>
-            <button >ACTIVE</button>
-            <button >COMPLETED</button>
+            <button onClick={ e => displayActivelist(e)}>ACTIVE</button>
+            <button onClick = { e => displayCompleted(e)} >COMPLETED</button>
         </div>
    )
 }

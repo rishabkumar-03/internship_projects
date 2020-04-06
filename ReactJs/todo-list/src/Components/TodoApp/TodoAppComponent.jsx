@@ -58,9 +58,31 @@ class TodoAppComponent extends React.Component{
     }
     handleStatus(index) {
         const itemFromList = this.state.items[index];
+            itemFromList["status"] = !itemFromList.status;
+            //this.state.items = itemFromList;
         
        // console.log(itemFromList.state);
     }
+    displayActivelist(e){
+        const items= this.state.items;
+        const status= this.state.status;
+        const filteredItems= items.filter( item => item.status===false);
+        this.setState({
+            items : filteredItems
+
+        })   
+    }
+    displayCompleted(e){
+        const items= this.state.items;
+        const status= this.state.status;
+        const filteredItems= items.filter( item => item.status===true);
+        this.setState({
+            items : filteredItems
+
+        })
+    }
+    
+    
     render() {
         const { currentItem, items } = this.state;
         return(
@@ -68,7 +90,7 @@ class TodoAppComponent extends React.Component{
                 <HeaderComponent />
                 <TodoItemComponent currentItem={currentItem} addItem={() => this.addItem()} handleInput={(e) => this.handleInput(e)} />
                 <TodoListComponent items={items} deleteItem={(key) => this.deleteItem(key)} handleStatus = { (key) => this.handleStatus(key)}></TodoListComponent>
-                <TodoFilterComponent />
+                <TodoFilterComponent displayActivelist={ (e) => this.displayActivelist(e)} displayCompleted ={ (e) => this.displayCompleted(e)} items={items}/>
             </WrapperComponent>
         );
     }
